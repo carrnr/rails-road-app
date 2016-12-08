@@ -24,10 +24,8 @@ class MapsController < ApplicationController
   def create
     @map = Map.new(map_params)
 
-    if @map.save redirect_to maps_path
-    else
-      render :new
-    end
+    @map.save
+
 
     respond_to do |format|
       format.html {render html: @map}
@@ -57,7 +55,7 @@ class MapsController < ApplicationController
 
   private
   def map_params
-    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :coordinates);
+    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :coordinates => []);
   end
 
 end
