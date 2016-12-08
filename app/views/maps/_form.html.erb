@@ -12,38 +12,49 @@
 
   <div class="field">
     <%= f.label :date_closed %>
-    <%= f.number_field :date_closed %>
+    <%= f.date_field :date_closed %>
   </div>
 
   <div class="field">
     <%= f.label :date_reopen %>
-    <%= f.text_field :date_reopen %>
+    <%= f.date_field :date_reopen %>
   </div>
 
   <div class="field">
-    <form>
+    <%= f.label :coordinates %>
+    <%= f.number_field :coordinates, :step => 0.4, name: "map[coordinates][]" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :coordinates %>
+    <%= f.number_field :coordinates, :step => 0.4, name: "map[coordinates][]" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :coordinates %>
+    <%= f.number_field :coordinates, :step => 0.4, name: "map[coordinates][]" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :coordinates %>
+    <%= f.number_field :coordinates, :step => 0.4, name: "map[coordinates][]" %>
+  </div>
+
+
+    <!-- <form action="/maps/new" method="post">
       <label for="longitude1">Point 1 Longitude</label>
-      <input type="textbox" name="coordinates[point1][]" id="longitude1">
+      <input type="textbox" name="coordinates[]" id="longitude1" value="123.456">
       <label for="latitude1">Point 1 Latitude</label>
-      <input type="textbox" name="coordinates[point1][]" id="latitude1">
+      <input type="textbox" name="coordinates[]" id="latitude1" value="-123.456">
       <label for="longitude2">Point 2 Longitude</label>
-      <input type="textbox" name="coordinates[point2][]" id="longitude2">
+      <input type="textbox" name="coordinates[]" id="longitude2" value="123.456">
       <label for="latitude2">Point 2 Latitude</label>
-      <input type="textbox" name="coordinates[point2][]" id="latitude2">
-    </form>
+      <input type="textbox" name="coordinates[]" id="latitude2" value="-123.456">
+    </form> -->
 
-  </div>
-
-  <div class="field">
-    <%= f.hidden_field :coordinates, :required => true %>
-  </div>
-
-  <!-- <div class="field">
-    <%#= f.hidden_field :user_id %>
-  </div> -->
 
   <div class="field">
-    <%= f.submit %>
+    <%= f.submit "Save" %>
   </div>
 
 <% end %>
