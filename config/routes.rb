@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  get 'maps' => 'maps#index'
+
+  root 'maps#index'
+
+  # get 'maps' => 'maps#index'
+
+  resources :maps
 end

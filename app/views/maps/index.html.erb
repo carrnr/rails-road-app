@@ -1,1 +1,11 @@
 <h1>Road Map Generator</h1>
+
+<% @maps.each do |map| %>
+  <ul>
+    <li class="map-details">Name: <%= map.name %></li>
+    <li class="map-details">Description: <%= map.description %></li>
+    <li class="map-details">Date of Closure: <%= map.date_closed %> days</li>
+    <li class="map-details">Date of Re-Opening: <%= map.date_reopen %></li>
+    <li class="map-details">Coordinates: <%= map.coordinates %></li>
+  </ul>
+<% end %>
