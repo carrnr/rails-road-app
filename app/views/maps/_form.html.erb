@@ -1,0 +1,49 @@
+<%= form_for @map do |f| %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, :required => true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_closed %>
+    <%= f.number_field :date_closed %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date_reopen %>
+    <%= f.text_field :date_reopen %>
+  </div>
+
+  <div class="field">
+    <form>
+      <label for="longitude1">Point 1 Longitude</label>
+      <input type="textbox" name="coordinates[point1][]" id="longitude1">
+      <label for="latitude1">Point 1 Latitude</label>
+      <input type="textbox" name="coordinates[point1][]" id="latitude1">
+      <label for="longitude2">Point 2 Longitude</label>
+      <input type="textbox" name="coordinates[point2][]" id="longitude2">
+      <label for="latitude2">Point 2 Latitude</label>
+      <input type="textbox" name="coordinates[point2][]" id="latitude2">
+    </form>
+
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :coordinates, :required => true %>
+  </div>
+
+  <!-- <div class="field">
+    <%#= f.hidden_field :user_id %>
+  </div> -->
+
+  <div class="field">
+    <%= f.submit %>
+  </div>
+
+<% end %>

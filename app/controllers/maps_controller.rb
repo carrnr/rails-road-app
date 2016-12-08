@@ -17,19 +17,19 @@ class MapsController < ApplicationController
     end
   end
 
+  def new
+    @map = Map.new
+  end
+
   def create
-    @map = Suitcase.new(map_params)
+    @map = Map.new(map_params)
     @map.save
 
     respond_to do |format|
       format.html {render html: @map}
       format.json {render json: @map.to_json}
     end
-  end
-
-  def new
-    @map = Map.new
-  end
+  end  
 
   def edit
     @map = Map.find(params[:id])
@@ -53,7 +53,7 @@ class MapsController < ApplicationController
 
   private
   def map_params
-    params.require(:map).permit(:name, :coordinates);
+    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :coordinates[]);
   end
 
 end
