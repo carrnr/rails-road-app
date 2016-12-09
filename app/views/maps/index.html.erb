@@ -6,6 +6,61 @@
     <li class="map-details">Description: <%= map.description %></li>
     <li class="map-details">Date of Closure: <%= map.date_closed %> days</li>
     <li class="map-details">Date of Re-Opening: <%= map.date_reopen %></li>
-    <li class="map-details">Coordinates: <%= map.coordinates %></li>
   </ul>
+  <div class="map-display">
+    <div id="<%= map.id %>" class="map-size"></div>
+  </div>
 <% end %>
+
+<script>
+
+  initMap = function() {
+
+
+      $.ajax({
+        url:'/maps',
+        method:'GET',
+        dataType:'JSON',
+        data: {}
+      }).done(function(response){
+         for (var i=0; i < response.length; i++) {
+            var point1 = response[i].coordinates[0];
+            var point2 = response[i].coordinates[1];
+
+
+            var mapOptions = {
+              center: {lat: point1[0], lng: point2[1]},
+              zoom: 13
+            };
+
+
+            var map = new google.maps.Map(document.getElementById(response[i].id), mapOptions);
+
+            var poly = new Array();
+            var pos1 = new google.maps.LatLng(point1[0],point1[1]);
+            var pos2 = new google.maps.LatLng(point2[0],point2[1]);
+            poly.push(pos1);
+            poly.push(pos2);
+
+            console.log(poly);
+
+
+            var path = new google.maps.Polyline({
+              path: poly,
+              strokeColor: '#ba0b0b',
+              strokeOpacity: 1.0,
+              strokeWeight: 5
+            });
+
+            console.log(path);
+
+            path.setMap(map);
+
+          }
+
+      });
+
+  }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqsCaOw8_xtZ37g3_YWkIiwKlvMva7c7k&callback=initMap"></script>

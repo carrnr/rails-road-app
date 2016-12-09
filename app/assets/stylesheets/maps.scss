@@ -7,7 +7,18 @@
   height: 500px;
 }
 
-.map-container {
+.map-size {
+  width: 500px;
+  height: 500px;
+}
+
+
+#map {
+  width: 500px;
+  height: 500px;
+}
+
+.map-container, .map-display {
   width: 700px;
   height: 700px;
 }
