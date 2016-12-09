@@ -5,7 +5,7 @@ class MapsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json {render json: @map.to_json}
+      format.json {render json: @maps}
     end
   end
 
@@ -29,7 +29,7 @@ class MapsController < ApplicationController
 
     respond_to do |format|
       format.html {render html: @map}
-      format.json {render json: @map.to_json}
+      format.json {render :json => @map.to_json}
     end
   end
 

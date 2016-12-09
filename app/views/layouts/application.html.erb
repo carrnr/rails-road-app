@@ -2,13 +2,196 @@
 <html>
   <head>
     <title>RoadApp</title>
-    <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
     <%= yield %>
   </body>
+  <script>
+// var coordinates_array = []
+//
+// initMap = function() {
+//
+//     var mapOptions = {
+//       center: {lat: 43.777167, lng: -79.231510},
+//       zoom: 13
+//     };
+//
+//     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+//
+//     var poly = new google.maps.Polyline({
+//       strokeColor: '#ba0b0b',
+//       strokeOpacity: 1.0,
+//       strokeWeight: 5
+//     });
+//
+//     poly.setMap(map);
+//
+//     // Add a listener for the click event
+//     map.addListener('click', addLatLng);
+//
+//
+//     // Handles click events on a map, and adds a new point to the Polyline.
+//      function addLatLng(event) {
+//         var path = poly.getPath();
+//
+//         var point = [(event.latLng.lat()), (event.latLng.lng())]
+//         console.log(point);
+//
+//         coordinates_array.push(point);
+//
+//         // Because path is an MVCArray, we can simply append a new coordinate
+//         // and it will automatically appear.
+//         path.push(event.latLng);
+//
+//
+//         // and it will automatically appear.
+//
+//         // set variable for all input fields
+//       var inputs = $(".points");
+//
+//       // loop through the inputs and fill each one with new coordinate
+//         for (var i=0; i<inputs.length; i++) {
+//           if (inputs[i].value === "") {
+//             inputs[i].value = coordinates_array;
+//             break;
+//           }
+//         }
+//
+//
+//         // Add a new marker at the new plotted point on the polyline.
+//         var marker = new google.maps.Marker({
+//           position: event.latLng,
+//           title: '#' + path.getLength(),
+//           map: map
+//         });
+//       }
+//
+// };
+
+// function for creating new points based off of a previous point selection
+// $('#form1').on('submit', function(event) {
+//   event.preventDefault();
+//
+//   var mapOptions = {
+//     center: {lat: 43.777167, lng: -79.231510},
+//     zoom: 13
+//   };
+//
+//   drawNewMap = function() {
+//
+//     var myCoordinates = [];
+//
+//     for (var i = 0; i < coordinates_array.length; i++) {
+//
+//       myCoordinates.push("new google.maps.LatLng(" + coordinates_array[i] + ")");
+//
+//     }
+//     console.log(myCoordinates);
+//
+//     var map2 = new google.maps.Map(document.getElementById('map2'), mapOptions);
+//
+//     var poly = new google.maps.Polyline({
+//       path: myCoordinates,
+//       strokeColor: '#ba0b0b',
+//       strokeOpacity: 1.0,
+//       strokeWeight: 5
+//     });
+//
+//     poly.setMap(map2);
+//
+//   }
+//
+//   drawNewMap();
+
+
+  //take values from existing database and recreate maps
+
+    //
+    // $('#view-maps').on('click', function(event) {
+    //   event.preventDefault();
+    //
+    //   $.ajax({
+    //     url:'/maps',
+    //     method:'GET',
+    //     dataType:'JSON',
+    //     data: {}
+    //   }).done(function(response){
+    //       console.log(response);
+    //      for (var i=0; i < response.length; i++) {
+    //        console.log(response[i].name)
+    //      }
+    //
+    //
+    //   });
+    // });
+    //
+    //
+    //
+    // $('#view-maps').on('click', function(event) {
+    //   event.preventDefault();
+
+
+
+
+    initMap = function() {
+
+
+        $.ajax({
+          url:'/maps',
+          method:'GET',
+          dataType:'JSON',
+          data: {}
+        }).done(function(response){
+          //  for (var i=0; i < response.length; i++) {
+            var point1 = response[0].coordinates[0];
+            var point2 = response[0].coordinates[1];
+
+            var mapOptions = {
+              center: {lat: 43.777167, lng: -79.231510},
+              zoom: 13
+            };
+
+
+          var map = new google.maps.Map(document.getElementById('map2'), mapOptions);
+
+          var poly = new Array();
+          var pos1 = new google.maps.LatLng(point1[0],point1[1]);
+          var pos2 = new google.maps.LatLng(point2[0],point2[1]);
+          poly.push(pos1);
+          poly.push(pos2);
+
+
+          var path = new google.maps.Polyline({
+            path: poly,
+            strokeColor: '#ba0b0b',
+            strokeOpacity: 1.0,
+            strokeWeight: 5
+          });
+
+          console.log(path);
+
+          path.setMap(map);
+
+    });
+
+}
+        // function addLatLng(event) {
+        //    var path = poly.getPath();
+        //
+        //    // Because path is an MVCArray, we can simply append a new coordinate
+        //    // and it will automatically appear.
+        //    path.push(event.latLng);
+        // }
+
+    // });
+
+
+// });
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqsCaOw8_xtZ37g3_YWkIiwKlvMva7c7k&callback=initMap"></script>
 </html>

@@ -22,23 +22,25 @@
 
   <div class="field">
     <%= f.label :coordinates %>
-    <%= f.number_field :coordinates, name: "map[coordinates][]", :step => 0.0001 %>
+    <%= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.0001, class: 'points' %>
   </div>
 
   <div class="field">
     <%= f.label :coordinates %>
-    <%= f.number_field :coordinates, name: "map[coordinates][]", :step => 0.0001 %>
+    <%= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.0001, class: 'points' %>
   </div>
 
   <div class="field">
     <%= f.label :coordinates %>
-    <%= f.number_field :coordinates, name: "map[coordinates][]", :step => 0.0001 %>
+    <%= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.0001, class: 'points' %>
   </div>
 
   <div class="field">
     <%= f.label :coordinates %>
-    <%= f.number_field :coordinates, name: "map[coordinates][]", :step => 0.0001 %>
+    <%= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.0001, class: 'points' %>
   </div>
+
+
 
 
     <!-- <form action="/maps/new" method="post">
@@ -58,3 +60,5 @@
   </div>
 
 <% end %>
+
+  <button id="view-maps">View Maps</button>
