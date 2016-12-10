@@ -5,6 +5,7 @@
 </div>
 
 <script>
+
 var coordinates_array = []
 
 initMapNew = function() {
@@ -29,32 +30,23 @@ initMapNew = function() {
 
 
     // Handles click events on a map, and adds a new point to the Polyline.
+
      function addLatLng(event) {
+
         var path = poly.getPath();
-
-        var point = [(event.latLng.lat()), (event.latLng.lng())]
-        console.log(point);
-
+        var point = [event.latLng.lat(), event.latLng.lng()]
         coordinates_array.push(point);
+        console.log(JSON.stringify(coordinates_array));
+
+        var coordinates_input = JSON.stringify(coordinates_array);
+
+
 
         // Because path is an MVCArray, we can simply append a new coordinate
         // and it will automatically appear.
         path.push(event.latLng);
 
-
-        // and it will automatically appear.
-
-        // set variable for all input fields
-      var inputs = $(".points");
-
-      // loop through the inputs and fill each one with new coordinate
-        for (var i=0; i<inputs.length; i++) {
-          if (inputs[i].value === "") {
-            inputs[i].value = coordinates_array;
-            break;
-          }
-        }
-
+        $(".coordinates").val(coordinates_input);
 
         // Add a new marker at the new plotted point on the polyline.
         var marker = new google.maps.Marker({
@@ -62,9 +54,17 @@ initMapNew = function() {
           title: '#' + path.getLength(),
           map: map
         });
+
       }
 
-};
+    };
+
+  //
+  // $('.save-map').on('submit', function() {
+  //     console.log(coordinates_array);
+  //     $('.points').value = coordinates_array;
+  //     // window.open("localhost:3000//controller/create?coordinates="+coordinates_array,"_self");
+  // });
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqsCaOw8_xtZ37g3_YWkIiwKlvMva7c7k&callback=initMapNew"></script>

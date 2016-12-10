@@ -2,43 +2,33 @@
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name, :required => true %>
+    <%= f.text_field :name, :required => true, class: 'name-field' %>
   </div>
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: 'desc-field' %>
   </div>
 
   <div class="field">
     <%= f.label :date_closed %>
-    <%= f.date_field :date_closed %>
+    <%= f.date_field :date_closed, class: 'closed-field' %>
   </div>
 
   <div class="field">
     <%= f.label :date_reopen %>
-    <%= f.date_field :date_reopen %>
+    <%= f.date_field :date_reopen, class: 'reopen-field' %>
   </div>
 
   <div class="field">
     <%= f.label :coordinates %>
-    <%= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.0001, class: 'points' %>
+    <%= f.hidden_field :coordinates, as: :array, class: 'coordinates' %>
   </div>
 
-  <div class="field">
-    <%= f.label :coordinates %>
-    <%= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.0001, class: 'points' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :coordinates %>
-    <%= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.0001, class: 'points' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :coordinates %>
-    <%= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.0001, class: 'points' %>
-  </div>
+  <!-- <div class="field">
+    <%#= f.label :coordinates %>
+    <%#= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.000001, class: 'points' %>
+  </div> -->
 
 
 
@@ -56,9 +46,7 @@
 
 
   <div class="field">
-    <%= f.submit "Save" %>
+    <%= f.submit "Save", class: "save-map" %>
   </div>
 
 <% end %>
-
-  <button id="view-maps">View Maps</button>

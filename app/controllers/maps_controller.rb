@@ -18,17 +18,21 @@ class MapsController < ApplicationController
   end
 
   def new
-    @map = Map.new
+    @map = Map.new(:coordinates => params[:coordinates])
   end
 
   def create
+
     @map = Map.new(map_params)
 
     @map.save
-
+    #   redirect_to map_path(@map)
+    # else
+    #   render "new"
+    # end
 
     respond_to do |format|
-      format.html {render html: @map}
+      format.html
       format.json {render :json => @map.to_json}
     end
   end
