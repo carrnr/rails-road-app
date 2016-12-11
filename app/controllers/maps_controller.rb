@@ -18,7 +18,7 @@ class MapsController < ApplicationController
   end
 
   def new
-    @map = Map.new(:coordinates => params[:coordinates])
+    @map = Map.new
   end
 
   def create
@@ -30,6 +30,7 @@ class MapsController < ApplicationController
     # else
     #   render "new"
     # end
+
 
     respond_to do |format|
       format.html
@@ -59,7 +60,7 @@ class MapsController < ApplicationController
 
   private
   def map_params
-    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :coordinates => []);
+    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :coordinates => [])
   end
 
 end

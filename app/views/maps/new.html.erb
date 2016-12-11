@@ -40,13 +40,33 @@ initMapNew = function() {
 
         var coordinates_input = JSON.stringify(coordinates_array);
 
+        $(".coordinates").val(coordinates_input);
+
+        var name = $('.name-field').val();
+        var desc = $('.desc-field').val();
+        var closed = $('.closed-field').val();
+        var reopen = $('.reopen-field').val();
+
+
+        $('.save-map').on('click', function(e) {
+          e.preventDefault();
+          var str = $('form').serialize();
+          $.ajax({
+            url: "/maps",
+            method: "post",
+            data: { name: name, description: desc, date_closed: closed, date_reopen: reopen, coordinates: coordinates_input },
+            dataType: 'JSON'
+          }).done(function(response) {
+            console.log(response);
+          });
+        });
 
 
         // Because path is an MVCArray, we can simply append a new coordinate
         // and it will automatically appear.
         path.push(event.latLng);
 
-        $(".coordinates").val(coordinates_input);
+
 
         // Add a new marker at the new plotted point on the polyline.
         var marker = new google.maps.Marker({

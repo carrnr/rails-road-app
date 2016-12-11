@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :maps
 
-  post 'maps/create' => 'maps#create'
 
 
 

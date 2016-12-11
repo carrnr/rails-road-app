@@ -1,28 +1,28 @@
-<%= form_for @map do |f| %>
+<%#= form_for @map, remote: true do |f| %>
 
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, :required => true, class: 'name-field' %>
+    <%#= f.label :name %>
+    <%#= f.text_field :name, :required => true, class: 'name-field' %>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description, class: 'desc-field' %>
+    <%#= f.label :description %>
+    <%#= f.text_area :description, class: 'desc-field' %>
   </div>
 
   <div class="field">
-    <%= f.label :date_closed %>
-    <%= f.date_field :date_closed, class: 'closed-field' %>
+    <%#= f.label :date_closed %>
+    <%#= f.date_field :date_closed, class: 'closed-field' %>
   </div>
 
   <div class="field">
-    <%= f.label :date_reopen %>
-    <%= f.date_field :date_reopen, class: 'reopen-field' %>
+    <%#= f.label :date_reopen %>
+    <%#= f.date_field :date_reopen, class: 'reopen-field' %>
   </div>
 
   <div class="field">
-    <%= f.label :coordinates %>
-    <%= f.hidden_field :coordinates, as: :array, class: 'coordinates' %>
+    <%#= f.label :coordinates %>
+    <%#= f.hidden_field :coordinates, name: "map[coordinates][]", class: 'coordinates' %>
   </div>
 
   <!-- <div class="field">
@@ -32,21 +32,14 @@
 
 
 
-
-    <!-- <form action="/maps/new" method="post">
-      <label for="longitude1">Point 1 Longitude</label>
-      <input type="textbox" name="coordinates[]" id="longitude1" value="123.456">
-      <label for="latitude1">Point 1 Latitude</label>
-      <input type="textbox" name="coordinates[]" id="latitude1" value="-123.456">
-      <label for="longitude2">Point 2 Longitude</label>
-      <input type="textbox" name="coordinates[]" id="longitude2" value="123.456">
-      <label for="latitude2">Point 2 Latitude</label>
-      <input type="textbox" name="coordinates[]" id="latitude2" value="-123.456">
-    </form> -->
-
-
   <div class="field">
-    <%= f.submit "Save", class: "save-map" %>
+    <%#= f.submit "Save", class: "save-map" %>
   </div>
 
-<% end %>
+  <input class="name-field">
+  <input class="desc-field">
+  <input class="closed-field">
+  <input class="reopen-field">
+  <button class="save-map">Save</button>
+
+<%# end %>
