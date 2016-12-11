@@ -30,9 +30,13 @@
          for (var i=0; i < response.length; i++) {
             var targetmap_id = response[i].id
             console.log(targetmap_id);
+            getPoints(targetmap_id);
+          }
+      });
 
 
-            $.ajax({
+      getPoints = function(targetmap_id) {
+         $.ajax({
               url:'/points',
               method:'GET',
               async: true,
@@ -75,12 +79,8 @@
 
             path.setMap(map);
 
-
-        });
-
-      }
-
-    });
+      });
+    }
 
   }
 
