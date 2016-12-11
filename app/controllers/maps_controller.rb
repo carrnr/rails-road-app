@@ -22,19 +22,16 @@ class MapsController < ApplicationController
   end
 
   def create
-
     @map = Map.new(map_params)
-
-    @map.save
-    #   redirect_to map_path(@map)
-    # else
-    #   render "new"
-    # end
-
+    if @map.save
+      redirect_to map_path(@map)
+    else
+      render "new"
+    end
 
     respond_to do |format|
       format.html
-      format.json {render :json => @map.to_json}
+      format.json
     end
   end
 
@@ -60,7 +57,7 @@ class MapsController < ApplicationController
 
   private
   def map_params
-    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :coordinates => [])
+    params.require(:map).permit(:name, :description, :date_closed, :date_reopen)
   end
 
 end

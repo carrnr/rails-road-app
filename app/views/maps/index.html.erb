@@ -10,37 +10,56 @@
   <div class="map-display">
     <div id="<%= map.id %>" class="map-size"></div>
   </div>
+  <%= link_to 'Delete Map', map, method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
+
+<%= link_to "Create New Map", new_map_path %>
 
 <script>
 
   initMap = function() {
 
-
       $.ajax({
         url:'/maps',
+        async: true,
         method:'GET',
         dataType:'JSON',
         data: {}
       }).done(function(response){
+        console.log(response);
          for (var i=0; i < response.length; i++) {
-            var point1 = response[i].coordinates[0];
-            var point2 = response[i].coordinates[1];
+            var targetmap_id = response[i].id
+            console.log(targetmap_id);
+
+
+            $.ajax({
+              url:'/points',
+              method:'GET',
+              async: true,
+              dataType:'JSON',
+              data: {}
+            }).done(function(response){
+              console.log(response);
+              var matchedPoints = response.filter(function(i) {
+                                    return i.map_id === targetmap_id;
+                                  });
+              console.log(matchedPoints);
 
 
             var mapOptions = {
-              center: {lat: point1[0], lng: point2[1]},
+              center: {lat: matchedPoints[0].latitude, lng: matchedPoints[1].longitude},
               zoom: 13
             };
 
 
-            var map = new google.maps.Map(document.getElementById(response[i].id), mapOptions);
+            var map = new google.maps.Map(document.getElementById(targetmap_id), mapOptions);
 
             var poly = new Array();
-            var pos1 = new google.maps.LatLng(point1[0],point1[1]);
-            var pos2 = new google.maps.LatLng(point2[0],point2[1]);
-            poly.push(pos1);
-            poly.push(pos2);
+
+            for (var i=0; i < matchedPoints.length; i++) {
+              pos = new google.maps.LatLng(matchedPoints[i].latitude, matchedPoints[i].longitude);
+              poly.push(pos);
+            }
 
             console.log(poly);
 
@@ -56,9 +75,12 @@
 
             path.setMap(map);
 
-          }
 
-      });
+        });
+
+      }
+
+    });
 
   }
 

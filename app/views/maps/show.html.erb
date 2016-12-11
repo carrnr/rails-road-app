@@ -5,18 +5,94 @@
   <li class="map-details">Date of Re-Opening: <%= @map.date_reopen %></li>
 </ul>
 
-<button id="map-create">Create Map</button>
+<div class="map-container">
+  <div id="map"></div>
+</div>
+
+<button id="save-map">Save Map</button>
 
 <script>
- $('#map-create').on('click', function(event) {
-    event.preventDefault();
 
-   $.ajax({
-    url: "maps/update",
-    type: 'post',
-    data: 'coordinates=' + coordinates_array,
-    dataType: 'script'
-   });
 
-});
+
+initMapNew = function() {
+
+    var mapOptions = {
+      center: {lat: 43.777167, lng: -79.231510},
+      zoom: 13
+    };
+
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    var poly = new google.maps.Polyline({
+      strokeColor: '#ba0b0b',
+      strokeOpacity: 1.0,
+      strokeWeight: 5
+    });
+
+    poly.setMap(map);
+
+    // Add a listener for the click event
+    map.addListener('click', addLatLng);
+
+    var coordinates_array = []
+    // Handles click events on a map, and adds a new point to the Polyline.
+
+     function addLatLng(event) {
+
+
+        var path = poly.getPath();
+        var point = [event.latLng.lat(), event.latLng.lng()]
+        coordinates_array.push(point);
+
+        // Because path is an MVCArray, we can simply append a new coordinate
+        // and it will automatically appear.
+        path.push(event.latLng);
+
+        // Add a new marker at the new plotted point on the polyline.
+        var marker = new google.maps.Marker({
+          position: event.latLng,
+          title: '#' + path.getLength(),
+          map: map
+        });
+
+
+        // when the button is clicked, loop through the array of coordinates and
+        // for each one, make a post request for a new point object
+
+
+
+// end of addLatLng function
+      }
+
+      $('#save-map').on('click', function(e) {
+        e.preventDefault();
+        console.log(coordinates_array);
+
+        for (var i=0; i < coordinates_array.length; i++) {
+          var lat = coordinates_array[i][0]
+          console.log(lat);
+          var lng = coordinates_array[i][1]
+          console.log(lng);
+          var url = window.location.href
+          var map_id = url.substring(url.lastIndexOf('/') + 1);
+
+          $.ajax({
+            url: "/points",
+            method: "post",
+            data: { point: { latitude: lat, longitude: lng, map_id: map_id } },
+            dataType: 'JSON'
+          }).done(function(response) {
+            console.log(response);
+          });
+// end of loop
+        }
+
+// end click event
+      });
+// end of initMap function
+    };
+
+
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqsCaOw8_xtZ37g3_YWkIiwKlvMva7c7k&callback=initMapNew"></script>
