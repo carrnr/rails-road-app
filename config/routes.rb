@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'categories/show'
+
   root 'maps#index'
 
   resources :maps

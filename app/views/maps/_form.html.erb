@@ -20,6 +20,11 @@
     <%= f.datetime_field :date_reopen, class: 'reopen-field' %>
   </div>
 
+  <div class="field">
+    <%= f.label :category_id, "Type" %>
+    <%= f.collection_select(:category_id, Category.all, :id, :name ) %>
+  </div>
+
 
   <div class="field">
     <%= f.submit "Continue", class: "save-map" %>

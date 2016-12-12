@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+temp_rc = Category.create(name: "Temporary Road Closure")
+temp_lr = Category.create(name: "Temporary Lane Restriction")
+perm_rc = Category.create(name: "Permanent Road Closure")

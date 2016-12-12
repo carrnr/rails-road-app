@@ -11,6 +11,7 @@ class MapsController < ApplicationController
 
   def show
     @map = Map.find(params[:id])
+    @category = Category.find(@map.category_id)
     respond_to do |format|
       format.html
       format.json {render json: @map.to_json}
@@ -65,7 +66,7 @@ class MapsController < ApplicationController
 
   private
   def map_params
-    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :type)
+    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :category_id)
   end
 
 end
