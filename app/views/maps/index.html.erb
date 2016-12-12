@@ -8,7 +8,7 @@
     <tr>
       <th>Map ID</th>
       <th>Title</th>
-      <th>Description</th>
+      <th class="table-desc">Description</th>
       <th>Date Closed</th>
       <th>Date Re-Opening</th>
       <th>Type</th>
@@ -22,7 +22,7 @@
     <tr>
       <th scope="row"><%= map.id %></th>
       <td><%= map.name %></td>
-      <td><%= map.description %></td>
+      <td class="table-desc"><%= map.description %></td>
       <td><%= map.date_closed.strftime('%a, %b %d, %Y at %I:%M %p') %></td>
       <td><%= map.date_reopen.try(:strftime,'%a, %b %d, %Y at %I:%M %p') %></td>
       <td><%= map.category.name %></td>

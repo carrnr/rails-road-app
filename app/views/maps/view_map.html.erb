@@ -1,6 +1,6 @@
 <div class="container">
 
-      <div class="col-md-6">
+      <div>
         <ul class="map-details">
           <li class="map-details"><h3><strong><%= @map.name %></strong></h3></li>
           <li class="map-details"><h4><strong><%= @map.category.name %></strong></h4></li>
@@ -10,7 +10,7 @@
         </ul>
         <div class="map-display">
           <div id="<%= @map.id %>" class="map-size"></div>
-          <%= link_to "Back", maps_path, class: 'back-button' %>
+          <%#= link_to "Back", maps_path, class: 'back-button' %>
         </div>
 
       </div>
