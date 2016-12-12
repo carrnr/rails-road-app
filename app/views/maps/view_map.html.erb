@@ -6,7 +6,9 @@
           <li class="map-details"><h4><strong><%= @map.category.name %></strong></h4></li>
           <li class="map-details"><%= @map.description %></li>
           <li class="map-details">Date of Closure: <%= @map.date_closed.strftime('%a, %b %d, %Y at %I:%M %p') %> </li>
-          <li class="map-details">Date of Re-Opening: <%= @map.date_reopen.try(:strftime, '%a, %b %d, %Y at %I:%M %p') %></li>
+          <% if @map.date_reopen %>
+          <li class="map-details">Date of Re-Opening: <%=  @map.date_reopen.try(:strftime, '%a, %b %d, %Y at %I:%M %p')%></li>
+          <% end %>
         </ul>
         <div class="map-display">
           <div id="<%= @map.id %>" class="map-size"></div>
