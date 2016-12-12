@@ -3,6 +3,6 @@ class Map < ApplicationRecord
   has_many :points
   belongs_to :category
 
-  validates :name, :date_closed, :date_reopen, presence: true
+  validates :name, :date_closed, presence: true
 
 end

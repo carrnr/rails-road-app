@@ -5,7 +5,7 @@
       <li class="map-details">Name: <%= @map.name %></li>
       <li class="map-details">Description: <%= @map.description %></li>
       <li class="map-details">Date of Closure: <%= @map.date_closed.strftime('%a, %b %d, %Y at %I:%M %p') %> </li>
-      <li class="map-details">Date of Re-Opening: <%= @map.date_reopen.strftime('%a, %b %d, %Y at %I:%M %p') %></li>
+      <li class="map-details">Date of Re-Opening: <%= @map.date_reopen.try(:strftime, '%a, %b %d, %Y at %I:%M %p') %></li>
       <li class="map-details">Type: <%= @map.category.name %></li>
     </ul>
 
@@ -28,7 +28,7 @@
 initMapNew = function() {
 
     var mapOptions = {
-      center: {lat: 43.777167, lng: -79.231510},
+      center: {lat: 43.9109, lng: -78.7884},
       zoom: 13
     };
 
