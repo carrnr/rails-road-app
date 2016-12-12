@@ -30,6 +30,10 @@
 .map-details {
   list-style-type: none;
   padding-left: 0;
+  line-height: 25px;
+  h4 {
+    color: #a12f2d;
+  }
 }
 
 .title {
@@ -56,4 +60,14 @@
 
 .container {
   margin-top: 30px;
+}
+
+table {
+  margin-bottom: 50px !important;
+}
+
+.back-button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

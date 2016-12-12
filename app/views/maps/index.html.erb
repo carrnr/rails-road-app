@@ -13,6 +13,7 @@
       <th>Date Re-Opening</th>
       <th>Type</th>
       <th>View</th>
+      <th>Edit</th>
       <th>Delete</th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
       <td><%= map.date_reopen.strftime('%a, %b %d, %Y at %I:%M %p') %></td>
       <td><%= map.category.name %></td>
       <td><a href="/maps/<%= map.id %>/view_map">View Map</a></td>
+      <td><%= link_to 'Edit Map', edit_map_path(map) %></td>
       <td><%= link_to 'Delete Map', map, method: :delete, data: {confirm: "Are you sure?"} %></td>
     </tr>
     <% end %>

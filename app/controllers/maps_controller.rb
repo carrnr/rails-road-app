@@ -1,5 +1,6 @@
 class MapsController < ApplicationController
 
+
   def index
     @maps = Map.all
 
@@ -35,6 +36,7 @@ class MapsController < ApplicationController
     if @map.save
       redirect_to map_path(@map)
     else
+      flash[:alert] = "Invalid" 
       render "new"
     end
 
@@ -52,7 +54,7 @@ class MapsController < ApplicationController
     @map = Map.find(params[:id])
 
     if @map.update_attributes(map_params)
-      redirect_to map_url(@map)
+      redirect_to maps_url
     else
       render :edit
     end
