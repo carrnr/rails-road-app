@@ -20,7 +20,7 @@ class PointsController < ApplicationController
     @point.save
 
     respond_to do |format|
-      format.html
+      format.html 
       format.json {render :json => @map.to_json}
     end
   end
