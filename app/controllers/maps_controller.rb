@@ -17,6 +17,14 @@ class MapsController < ApplicationController
     end
   end
 
+  def view_map
+    @map = Map.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json {render json: @map.to_json}
+    end
+  end
+
   def new
     @map = Map.new
   end

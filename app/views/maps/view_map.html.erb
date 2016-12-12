@@ -1,72 +1,36 @@
 <div class="container">
 
-  <h1 class="title">Road Map Generator</h1>
-  <h4 class="title"><%= link_to "Create New Map", new_map_path %></h4>
-
-  <table class="table">
-  <thead class="thead-inverse">
-    <tr>
-      <th>Map ID</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Date Closed</th>
-      <th>Date Re-Opening</th>
-      <th>View</th>
-      <th>Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @maps.each do |map| %>
-    <tr>
-      <th scope="row"><%= map.id %></th>
-      <td><%= map.name %></td>
-      <td><%= map.description %></td>
-      <td><%= map.date_closed %></td>
-      <td><%= map.date_reopen %></td>
-      <td><a href="/maps/<%= map.id %>/view_map">View Map</a></td>
-      <td><%= link_to 'Delete Map', map, method: :delete, data: {confirm: "Are you sure?"} %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
-  <% @maps.each do |map| %>
-
       <div class="col-md-6">
         <ul class="map-details">
-          <li class="map-details">Name: <%= map.name %></li>
-          <li class="map-details">Description: <%= map.description %></li>
-          <li class="map-details">Date of Closure: <%= map.date_closed %> </li>
-          <li class="map-details">Date of Re-Opening: <%= map.date_reopen %></li>
-          <li><%= link_to 'Delete Map', map, method: :delete, data: {confirm: "Are you sure?"} %></li>
+          <li class="map-details">Name: <%= @map.name %></li>
+          <li class="map-details">Description: <%= @map.description %></li>
+          <li class="map-details">Date of Closure: <%= @map.date_closed %> </li>
+          <li class="map-details">Date of Re-Opening: <%= @map.date_reopen %></li>
+          <li><%= link_to 'Delete Map', @map, method: :delete, data: {confirm: "Are you sure?"} %></li>
         </ul>
         <div class="map-display">
-          <div id="<%= map.id %>" class="map-size"></div>
+          <div id="<%= @map.id %>" class="map-size"></div>
         </div>
       </div>
 
-  <% end %>
 
 </div>
-
 
 <script>
 
   initMap = function() {
 
       $.ajax({
-        url:'/maps',
+        url: this.location.href,
         async: true,
         method:'GET',
         dataType:'JSON',
         data: {}
       }).done(function(response){
         console.log(response);
-         for (var i=0; i < response.length; i++) {
-            var targetmap_id = response[i].id
-            console.log(targetmap_id);
-            getPoints(targetmap_id);
-          }
+        var targetmap_id = response.id
+        console.log(targetmap_id);
+        getPoints(targetmap_id);
       });
 
 
