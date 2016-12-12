@@ -65,7 +65,7 @@ class MapsController < ApplicationController
 
   private
   def map_params
-    params.require(:map).permit(:name, :description, :date_closed, :date_reopen)
+    params.require(:map).permit(:name, :description, :date_closed, :date_reopen, :type)
   end
 
 end

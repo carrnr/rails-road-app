@@ -12,19 +12,13 @@
 
   <div class="field">
     <%= f.label :date_closed, "Closure Begins" %>
-    <%= f.date_field :date_closed, class: 'closed-field' %>
+    <%= f.datetime_field :date_closed, class: 'closed-field' %>
   </div>
 
   <div class="field">
     <%= f.label :date_reopen, "Re-Open Date" %>
-    <%= f.date_field :date_reopen, class: 'reopen-field' %>
+    <%= f.datetime_field :date_reopen, class: 'reopen-field' %>
   </div>
-
-
-  <!-- <div class="field">
-    <%#= f.label :coordinates %>
-    <%#= f.text_field :coordinates, name: "map[coordinates][]", :step => 0.000001, class: 'points' %>
-  </div> -->
 
 
   <div class="field">

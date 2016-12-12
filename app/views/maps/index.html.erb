@@ -21,8 +21,8 @@
       <th scope="row"><%= map.id %></th>
       <td><%= map.name %></td>
       <td><%= map.description %></td>
-      <td><%= map.date_closed %></td>
-      <td><%= map.date_reopen %></td>
+      <td><%= map.date_closed.strftime('%a, %b %d, %Y at %I:%M %p') %></td>
+      <td><%= map.date_reopen.strftime('%a, %b %d, %Y at %I:%M %p') %></td>
       <td><a href="/maps/<%= map.id %>/view_map">View Map</a></td>
       <td><%= link_to 'Delete Map', map, method: :delete, data: {confirm: "Are you sure?"} %></td>
     </tr>
@@ -36,8 +36,8 @@
         <ul class="map-details">
           <li class="map-details">Name: <%= map.name %></li>
           <li class="map-details">Description: <%= map.description %></li>
-          <li class="map-details">Date of Closure: <%= map.date_closed %> </li>
-          <li class="map-details">Date of Re-Opening: <%= map.date_reopen %></li>
+          <li class="map-details">Date of Closure: <%= map.date_closed.strftime('%a, %b %d, %Y at %I:%M %p') %> </li>
+          <li class="map-details">Date of Re-Opening: <%= map.date_reopen.strftime('%a, %b %d, %Y at %I:%M %p') %></li>
           <li><%= link_to 'Delete Map', map, method: :delete, data: {confirm: "Are you sure?"} %></li>
         </ul>
         <div class="map-display">
