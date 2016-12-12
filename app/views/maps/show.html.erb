@@ -1,15 +1,22 @@
-<ul>
-  <li class="map-details">Name: <%= @map.name %></li>
-  <li class="map-details">Description: <%= @map.description %></li>
-  <li class="map-details">Date of Closure: <%= @map.date_closed %> </li>
-  <li class="map-details">Date of Re-Opening: <%= @map.date_reopen %></li>
-</ul>
+<div class="container">
+  <h3 class="title">Click to drop points on map</h3>
+  <div class="col-md-6 col-md-offset-3">
+    <ul class="map-details">
+      <li class="map-details">Name: <%= @map.name %></li>
+      <li class="map-details">Description: <%= @map.description %></li>
+      <li class="map-details">Date of Closure: <%= @map.date_closed %> </li>
+      <li class="map-details">Date of Re-Opening: <%= @map.date_reopen %></li>
+    </ul>
 
-<div class="map-container">
-  <div id="map"></div>
+    <button id="save-map">Save Map</button>
+    <button id="reset-map">Reset Map</button>
+
+    <div class="map-container">
+      <div id="map"></div>
+    </div>
+  </div>
+
 </div>
-
-<button id="save-map">Save Map</button>
 
 <script>
 

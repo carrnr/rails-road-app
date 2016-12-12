@@ -1,19 +1,27 @@
-<h1>Road Map Generator</h1>
+<div class="container">
 
-<% @maps.each do |map| %>
-  <ul>
-    <li class="map-details">Name: <%= map.name %></li>
-    <li class="map-details">Description: <%= map.description %></li>
-    <li class="map-details">Date of Closure: <%= map.date_closed %> </li>
-    <li class="map-details">Date of Re-Opening: <%= map.date_reopen %></li>
-  </ul>
-  <div class="map-display">
-    <div id="<%= map.id %>" class="map-size"></div>
-  </div>
-  <%= link_to 'Delete Map', map, method: :delete, data: {confirm: "Are you sure?"} %>
-<% end %>
+  <h1 class="title">Road Map Generator</h1>
+  <h4 class="title"><%= link_to "Create New Map", new_map_path %></h4>
 
-<%= link_to "Create New Map", new_map_path %>
+  <% @maps.each do |map| %>
+
+      <div class="col-md-6">
+        <ul class="map-details">
+          <li class="map-details">Name: <%= map.name %></li>
+          <li class="map-details">Description: <%= map.description %></li>
+          <li class="map-details">Date of Closure: <%= map.date_closed %> </li>
+          <li class="map-details">Date of Re-Opening: <%= map.date_reopen %></li>
+          <li><%= link_to 'Delete Map', map, method: :delete, data: {confirm: "Are you sure?"} %></li>
+        </ul>
+        <div class="map-display">
+          <div id="<%= map.id %>" class="map-size"></div>
+        </div>
+      </div>
+
+  <% end %>
+
+</div>
+
 
 <script>
 
